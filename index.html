@@ -30,6 +30,10 @@
             text-align: center;
             margin-bottom: 1.5rem;
             color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .btn {
             display: block;
@@ -50,6 +54,9 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 20px -5px #4f46e5;
         }
+        .btn:active {
+            transform: translateY(0);
+        }
         .note {
             text-align: center;
             font-size: 0.75rem;
@@ -61,10 +68,10 @@
 <body>
 <div class="container">
     <h1>🧘 Góc thư giãn</h1>
-    <!-- Thêm các trò chơi vào đây -->
-    <a href="#" class="btn">🎮 flappy Bird</a>
-    <a href="#" class="btn">🧩 Mê cung</a>
-    <a href="#" class="btn">🎲 Dịch ngôn ngữ</a>
+    <!-- Các nút liên kết đến file game -->
+    <a href="flappyBird.html" target="_blank" class="btn">🐤 Flappy Bird</a>
+    <a href="Mecung.html" target="_blank" class="btn">🕹️ Mê cung</a>
+    <a href="Dichngonngu.html" target="_blank" class="btn">🌍 Dịch ngôn ngữ</a>
     <div class="note">✨ Chọn trò chơi để giải trí và học tập. Mỗi trò chơi sẽ mở trong tab mới.</div>
 </div>
 </body>
