@@ -16,7 +16,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 550px;
+            max-width: 1000px;
             width: 100%;
             background: white;
             border-radius: 2rem;
@@ -35,27 +35,41 @@
             justify-content: center;
             gap: 10px;
         }
-        .btn {
-            display: block;
-            width: 100%;
+        .tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: none;
+            background: #e2e8f0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            color: #1e293b;
+        }
+        .tab-btn.active {
             background: #4f46e5;
             color: white;
-            text-align: center;
-            padding: 14px;
+            box-shadow: 0 4px 10px rgba(79,70,229,0.3);
+        }
+        .iframe-container {
+            width: 100%;
+            height: 70vh;
+            background: #f8fafc;
             border-radius: 1rem;
-            margin-bottom: 16px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.2s;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
-        .btn:hover {
-            background: #6366f1;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px #4f46e5;
-        }
-        .btn:active {
-            transform: translateY(0);
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .note {
             text-align: center;
@@ -67,15 +81,33 @@
 </head>
 <body>
 <div class="container">
-    <h1>🧘 Games vui để học</h1>
-    <!-- Các nút liên kết đến file game -->
-    <a href="https://exquisite-cranachan-e7e9a7.netlify.app/" target="_blank" class="btn">⌨️ Gõ 10 ngón PRO</a>
-    <a href="flappyBird.html" target="_blank" class="btn">🐤 Flappy Bird</a>
-    <a href="Mecung.html" target="_blank" class="btn">🕹️ Mê cung</a>
-    <a href="Dichngonngu.html" target="_blank" class="btn">🌍 Dịch ngôn ngữ</a>
-    <a href="caloncabe.html" target="_blank" class="btn">🐟 Cá lớn ăn cá bé</a>
-     <a href="hungtraicay.html" target="_blank" class="btn">🍇 Hứng hoa quả</a>
-    <div class="note">✨ Chọn trò chơi để giải trí và học tập. Mỗi trò chơi sẽ mở trong tab mới.</div>
+    <h1>🧘 Games vui học</h1>
+    <div class="tab-list" id="tabList">
+        <button class="tab-btn active" data-url="https://exquisite-cranachan-e7e9a7.netlify.app/">⌨️ Gõ 10 ngón PRO</button>
+        <button class="tab-btn" data-url="flappyBird.html">🐤 Flappy Bird</button>
+        <button class="tab-btn" data-url="Mecung.html">🕹️ Mê cung</button>
+        <button class="tab-btn" data-url="Dichngonngu.html">🌍 Dịch ngôn ngữ</button>
+        <button class="tab-btn" data-url="caloncabe.html">🐟 Cá lớn ăn cá bé</button>
+        <button class="tab-btn" data-url="hungtraicay.html">🍇 Hứng hoa quả</button>
+    </div>
+    <div class="iframe-container">
+        <iframe id="gameFrame" src="https://exquisite-cranachan-e7e9a7.netlify.app/"></iframe>
+    </div>
+    <div class="note">✨ Chọn trò chơi để trải nghiệm. Mỗi trò chơi sẽ hiển thị trong khung.</div>
 </div>
+
+<script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const iframe = document.getElementById('gameFrame');
+
+    // Nếu có tab nào được active, load game tương ứng
+    tabs.forEach(btn => {
+        btn.addEventListener('click', function() {
+            tabs.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            iframe.src = this.dataset.url;
+        });
+    });
+</script>
 </body>
 </html>
