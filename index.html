@@ -52,24 +52,17 @@
             box-shadow: 0 4px 10px rgba(79,70,229,0.3);
         }
         .iframe-container {
-            position: relative;
             width: 100%;
             height: 70vh;
             background: #f8fafc;
             border-radius: 1rem;
             overflow: hidden;
+            position: relative;
         }
-        .iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        iframe {
             width: 100%;
             height: 100%;
             border: none;
-            display: none;
-        }
-        .iframe-container iframe.active {
-            display: block;
         }
         .note {
             text-align: center;
@@ -81,39 +74,54 @@
 </head>
 <body>
 <div class="container">
-    <h1>🧘 Games vui Scratch</h1>
+    <h1>🧘 Vui học Scratch</h1>
     <div class="tab-list" id="tabList">
-        <button class="tab-btn active" data-target="flappy">🐤 Flappy Bird</button>
-        <button class="tab-btn" data-target="mecung">🕹️ Mê cung</button>
-        <button class="tab-btn" data-target="dichngonngu">🌍 Dịch ngôn ngữ</button>
-        <button class="tab-btn" data-target="caloncabe">🐟 Cá lớn ăn cá bé</button>
-        <button class="tab-btn" data-target="hungtraicay">🍇 Hứng hoa quả</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/flappyBird.html">🐤 Flappy Bird</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/Mecung.html">🕹️ Mê cung</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/Dichngonngu.html">🌍 Dịch ngôn ngữ</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/caloncabe.html">🐟 Cá lớn ăn cá bé</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/hungtraicay.html">🍇 Hứng hoa quả</button>
     </div>
-    <div class="iframe-container">
-        <iframe id="flappy" src="https://vietdieu.github.io/Goc_giai_tri/flappyBird.html" class="active"></iframe>
-        <iframe id="mecung" src="https://vietdieu.github.io/Goc_giai_tri/Mecung.html"></iframe>
-        <iframe id="dichngonngu" src="https://vietdieu.github.io/Goc_giai_tri/Dichngonngu.html"></iframe>
-        <iframe id="caloncabe" src="https://vietdieu.github.io/Goc_giai_tri/caloncabe.html"></iframe>
-        <iframe id="hungtraicay" src="https://vietdieu.github.io/Goc_giai_tri/hungtraicay.html"></iframe>
+     <div class="iframe-container" id="gameFrameContainer">
+        <!-- Iframe sẽ được tạo động bằng JavaScript -->
     </div>
     <div class="note">✨ Chọn trò chơi để trải nghiệm. Mỗi trò chơi sẽ hiển thị trong khung.</div>
 </div>
 
 <script>
     const tabs = document.querySelectorAll('.tab-btn');
-    const iframes = document.querySelectorAll('.iframe-container iframe');
+    const container = document.getElementById('gameFrameContainer');
 
+    // Hàm tạo iframe mới
+    function createIframe(src) {
+        // Xóa iframe cũ nếu có
+        const oldIframe = container.querySelector('iframe');
+        if (oldIframe) {
+            oldIframe.remove();
+        }
+        // Tạo iframe mới
+        const newIframe = document.createElement('iframe');
+        newIframe.src = src;
+        newIframe.id = 'gameFrame';
+        newIframe.allowFullscreen = true;
+        container.appendChild(newIframe);
+    }
+
+    // Khởi tạo: tải trò chơi đầu tiên
+    if (tabs.length > 0) {
+        createIframe(tabs[0].dataset.url);
+        tabs[0].classList.add('active');
+    }
+
+    // Xử lý sự kiện click tab
     tabs.forEach(btn => {
         btn.addEventListener('click', function() {
+            // Xóa active class khỏi tất cả
             tabs.forEach(b => b.classList.remove('active'));
+            // Thêm active cho tab hiện tại
             this.classList.add('active');
-            const target = this.dataset.target;
-            iframes.forEach(iframe => {
-                iframe.classList.remove('active');
-                if (iframe.id === target) {
-                    iframe.classList.add('active');
-                }
-            });
+            // Tạo iframe mới
+            createIframe(this.dataset.url);
         });
     });
 </script>
