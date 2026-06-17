@@ -30,17 +30,12 @@
             text-align: center;
             margin-bottom: 1.5rem;
             color: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
         .tab-list {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
-            justify-content: center;
         }
         .tab-btn {
             padding: 10px 20px;
@@ -49,9 +44,7 @@
             background: #e2e8f0;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9rem;
             transition: 0.2s;
-            color: #1e293b;
         }
         .tab-btn.active {
             background: #4f46e5;
@@ -64,7 +57,6 @@
             background: #f8fafc;
             border-radius: 1rem;
             overflow: hidden;
-            border: 1px solid #e2e8f0;
         }
         iframe {
             width: 100%;
@@ -84,11 +76,11 @@
     <h1>🧘 Games vui học</h1>
     <div class="tab-list" id="tabList">
         <button class="tab-btn active" data-url="https://exquisite-cranachan-e7e9a7.netlify.app/">⌨️ Gõ 10 ngón PRO</button>
-        <button class="tab-btn" data-url="flappyBird.html">🐤 Flappy Bird</button>
-        <button class="tab-btn" data-url="Mecung.html">🕹️ Mê cung</button>
-        <button class="tab-btn" data-url="Dichngonngu.html">🌍 Dịch ngôn ngữ</button>
-        <button class="tab-btn" data-url="caloncabe.html">🐟 Cá lớn ăn cá bé</button>
-        <button class="tab-btn" data-url="hungtraicay.html">🍇 Hứng hoa quả</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/flappyBird.html">🐤 Flappy Bird</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/Mecung.html">🕹️ Mê cung</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/Dichngonngu.html">🌍 Dịch ngôn ngữ</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/caloncabe.html">🐟 Cá lớn ăn cá bé</button>
+        <button class="tab-btn" data-url="https://vietdieu.github.io/Goc_giai_tri/hungtraicay.html">🍇 Hứng hoa quả</button>
     </div>
     <div class="iframe-container">
         <iframe id="gameFrame" src="https://exquisite-cranachan-e7e9a7.netlify.app/"></iframe>
@@ -100,7 +92,6 @@
     const tabs = document.querySelectorAll('.tab-btn');
     const iframe = document.getElementById('gameFrame');
 
-    // Nếu có tab nào được active, load game tương ứng
     tabs.forEach(btn => {
         btn.addEventListener('click', function() {
             tabs.forEach(b => b.classList.remove('active'));
